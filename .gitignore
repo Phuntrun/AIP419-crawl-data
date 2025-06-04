@@ -1,0 +1,4 @@
+# Ignore dataset directories
+/dataset/
+/data/
+/csv/
