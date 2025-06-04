@@ -27,4 +27,5 @@ crawl4ai-doctor
 #### Browser Installation
 ```bash
 # If you encounter any browser-related issues, install them manually:
-python -m
+python -m playwright install --with-deps chromium
+```
