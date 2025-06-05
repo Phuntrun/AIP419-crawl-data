@@ -1,8 +1,8 @@
 import asyncio
 import json
+import os
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator
 from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
-from urllib.parse import urljoin
 
 async def save_to_csv(content, clas, filename):
     try:
@@ -10,7 +10,7 @@ async def save_to_csv(content, clas, filename):
             content = json.loads(content)
         if not isinstance(content, list):
             content = [content]
-        
+        os.makedirs('csv', exist_ok=True)
         with open(filename, "a", encoding="utf-8") as f:
             for item in content:
                 recipe = item.get("recipe")

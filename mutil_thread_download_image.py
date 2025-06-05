@@ -5,7 +5,6 @@ import re
 import time
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
-from pathlib import Path
 
 # Hàm tải ảnh
 def download_image(index, folder, filename, url, base_dir, max_retries=3, timeout=30):

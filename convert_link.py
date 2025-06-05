@@ -1,8 +1,9 @@
 import asyncio
 import json
+import os
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator
 from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
-from urllib.parse import urljoin
+
 
 async def convert_to_link(content):
     try:
@@ -23,6 +24,7 @@ sem = asyncio.Semaphore(300)
 async def crawl_and_save(crawler, run_conf, url, line, save_as):
     async with sem:
         try:
+            os.makedirs('csv', exist_ok=True)
             result = await crawler.arun(url=url, config=run_conf)
             if result.success:
                 link = await convert_to_link(result.extracted_content)

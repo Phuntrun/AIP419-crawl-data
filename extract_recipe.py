@@ -1,9 +1,8 @@
 import asyncio
 import json
+import os
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator
 from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
-from urllib.parse import urljoin
-import hashlib
 
 sem = asyncio.Semaphore(300)
 async def crawl_and_save(crawler, run_conf, url, label, filename):
@@ -27,7 +26,9 @@ async def to_csv(content, label, filename):
         
         if not isinstance(content, list):
             content = [content]
-            
+
+        os.makedirs('csv', exist_ok=True)
+
         label = label.strip().replace("+", " ").replace("\n", "")
 
         for item in content:
