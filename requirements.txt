@@ -1,0 +1,5 @@
+crawl4ai
+pandas
+requests
+asyncio
+playwright
